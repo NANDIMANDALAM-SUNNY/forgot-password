@@ -10,7 +10,12 @@ mongoose.connect(dburl).then(
   err => { console.log(`Db is not Connected`) }
 );
 
- router.get('/' ,validate, async (req,res)=>{
+router.get('/',async (req,res)=>{
+  res.send("Hello from Backend")
+})
+
+
+ router.get('/userData' ,validate, async (req,res)=>{
   const token = req.header('jwttoken');
   let verifyToken = await jwtDecode(token)
   let user = await userSchema.findOne({email:verifyToken.email})
