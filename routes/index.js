@@ -38,7 +38,7 @@ try {
   if(user.length){
     res.send({
       statusCode:400,
-      message:"User Already "
+      message:"User Already exists"
     })
   }
   else{
