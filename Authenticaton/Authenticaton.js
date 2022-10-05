@@ -159,7 +159,7 @@ const sendResetpasswordMail = async (name,email,id,token)=>{
              <div style=" border: 1px solid black;border-radius: 30px;padding:20px ">
                  <p>We heard that you lost your password. Sorry about that!</p>
                  <p>But don’t worry! You can use the following button to reset your password:</p>
-                 <button style="padding:10px;background-color:green;color:white;border:none" > <a style="color:white" href="http://localhost:3000/resetpassword/${id}/${token}"  target=_blank>Reset your password</a></button>
+                 <button style="padding:10px;background-color:green;color:white;border:none" > <a style="color:white" href="https://guvi-task-password-reset.netlify.app/resetpassword/${id}/${token}"  target=_blank>Reset your password</a></button>
                  <p>f you don’t use this link within 15 minutes, it will expire. To get a new password reset link, visit:<a href="" target=_blank> here</a>  </p>
                  <img width="300px" src="https://www.getillustrations.com/packs/zanzi-free-illustrations-for-websites/scenes/_1x/security%20_%20lock,%20key,%20login,%20safety,%20protection,%20padlock,%20locked,%20unlock_md.png"/>
              </div>
