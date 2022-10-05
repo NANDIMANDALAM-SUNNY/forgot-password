@@ -10,7 +10,6 @@ mongoose.connect(dburl).then(
   err => { console.log(`Db is not Connected`) }
 );
 
-
  router.get('/' ,validate, async (req,res)=>{
   const token = req.header('jwttoken');
   let verifyToken = await jwtDecode(token)
@@ -27,10 +26,6 @@ mongoose.connect(dburl).then(
     })
   }
  })
-
-
-
-
 
 router.post('/signup',async (req,res)=>{
 try {
@@ -52,11 +47,7 @@ try {
       statusCode:500,
         message:"Sign up sucessfully"
      }) 
-  
-    
     }
-
-
 } 
 
 
@@ -70,27 +61,11 @@ catch (error) {
  })
 
  
-
-
 router.post('/login',async (req,res)=>{
   try {
     let user = await userSchema.findOne({email:req.body.email})
     if(user._id){
       let compare = await hashCompare(req.body.password,user.password)
-          // if(compare){
-          //   const jwttoken = await createToken(user.email,user.role)
-          //   res.send({
-          //     statusCode:400,
-          //     message:"Signed in Succesfully ",
-          //     data:jwttoken
-          //     })
-          // }
-          // else{
-          //   res.send({
-          //     statusCode:400,
-          //     message:"Invalid Credentials"
-          //   })
-          // }
         if(!compare) return res.status(400).json("Invalid Credentials")
            const jwttoken = await createToken(user.email,user.role)
              res.send({
@@ -113,9 +88,6 @@ router.post('/login',async (req,res)=>{
    }) 
   }
    })
-
-
-
 router.post('/forgotpassword',forgot_password)  //forgot Mail
 router.get('/resetpassword/:id/:token',verifyPassword)
 router.post('/newpassword/:id/:token',newPassword)

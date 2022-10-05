@@ -110,38 +110,6 @@ const roleAdmin =async (req,res,next)=>{
 
 
 
-// const forgot_password = async (req,res)=>{
-//     try {
-//      const userData =  await userSchema.findOne({email:req.body.email})
-//      if(userData){
-//       const random_string =  randomString.generate();
-//      const data = await  userSchema.updateOne({email:req.body.email},{$set:{token:random_string}});
-//      sendResetpasswordMail(userData.name,userData.email,random_string)
-
-
-//      res.send({
-//         statusCode:200,
-//         message:"Please check your email for to reset mail"
-//     })
-
-//      }else{
-//         res.send({
-//             statusCode:200,
-//             message:"Email Not Found"
-//         })
-//      }
-
-
-//     } catch (error) {
-//         console.log(error)
-//         res.send({
-//             statusCode:400,
-//             message:error
-//         })
-//     }
-// }
-
-
 // forgot Password
 const forgot_password = async (req,res)=>{
     try {
@@ -157,25 +125,6 @@ const forgot_password = async (req,res)=>{
           statusCode:200,
             message:"Please check your email for to reset mail"
        })
-    //  if(userData){
-    //     const payload={
-    //         email:req.body.email,
-    //     }
-    //     const token = jwt.sign(payload,secretKey,{expiresIn:'10m'})
-    //     const data = await  userSchema.updateOne({email:req.body.email},{$set:{token:token}});
-    //     sendResetpasswordMail(userData.name,userData.email,token)
-    //       res.send({
-    //      statusCode:200,
-    //      message:"Please check your email for to reset mail"
-    //  })
-
-    //  }else{
-    //     res.send({
-    //         statusCode:200,
-    //         message:"Email Not Found"
-    //     })
-    //  }
-
 
     } catch (error) {
         console.log(error)
@@ -238,40 +187,10 @@ const sendResetpasswordMail = async (name,email,id,token)=>{
 
 //verifyPassword
 const verifyPassword =async (req,res)=>{
-    // try {
-    //   const token = req.query.token;
-    //   const tokenData = await  userSchema.findOne({token:token})
-    // if(tokenData){
-    //     const decodeJWt = await jwtDecode(tokenData.token);
-    //      let currentTime = Math.round(new Date()/1000)
-    //     if(currentTime<=decodeJWt.exp) {
-    //         // const password = req.body.password;
-    //         // const newPassword = await hashPassword(password)
-    //         // const updatePassword = await userSchema.findByIdAndUpdate({_id:tokenData._id},{$set:{password:newPassword,token:""}},{new:true});  //new true returns updated data
-    //         // res.send({
-    //         //     statusbar:200,
-    //         //     success:true,
-    //         //     message:"passWord Reset Successfully",
-    //         //     data:updatePassword
-    //         // })
-    //         newPassword(decodeJWt)
-    //     }
-    //     else{
-    //     res.status(400).send({success:true,msg:"Link has been expired"})
-    //     }
-    // }
-    // else{
-    //     res.status(400).send({success:true,msg:"This link has already used to reset password"})
-    // }
-    // } catch (error) {
-    //     res.status(400).send({success:false,msg:"Link has been already expired"})
-    // }
-
     try {
         const token = req.params.token;
         const tokenData = await  userSchema.findOne({token:token}) 
         if(!tokenData) {
-            // return res.status(200).send({message:"The Link has been already used"})
           return  res.send({
                 statusCode:200,
                 message:"The Link has been already used"
@@ -298,11 +217,6 @@ const verifyPassword =async (req,res)=>{
     }
 
 }
-
-
-
-
-
 
 
 const newPassword =async (req,res)=>{
