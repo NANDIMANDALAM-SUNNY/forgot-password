@@ -62,7 +62,7 @@ const registerMail = async (name,email)=>{
      var  mailOptions={
              from: "myemail@gmail.com",
              to: email,
-             subject: "Reset Password",
+             subject: "Registered SuccessFully",
              text: "Hello world?", 
              html: `             
              <div style="margin:50px">
